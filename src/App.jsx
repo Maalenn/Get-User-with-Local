@@ -8,8 +8,8 @@ import { Home, Service, ErrorPage } from "./Pages";
 import RootLayout from "./Layouts/RootLayout";
 import AboutLayout from "./Layouts/AboutLayout";
 import UserLayout from "./Layouts/UserLayout";
-import User, { userLoader } from "./Pages/user/User";
-import UserDetail, { userDetailLoader } from "./Pages/user/UserDetail";
+import User from "./Pages/user/User";
+import UserDetail from "./Pages/user/UserDetail";
 import UserErrorPage from "./Pages/user/UserErrorPage";
 // const router = createBrowserRouter([
 //   {
@@ -58,8 +58,8 @@ const router = createBrowserRouter(
       </Route>
       <Route path="service" element={<Service />} />
       <Route path="user" element={<UserLayout />}>
-        <Route index element={<User />} loader={userLoader} />
-        <Route path=":id" element={<UserDetail />} loader={userDetailLoader} errorElement={<UserErrorPage/>}/>
+        <Route index element={<User />} />
+        <Route path=":id" element={<UserDetail />} errorElement={<UserErrorPage/>}/>
       </Route>
     </Route>
   )

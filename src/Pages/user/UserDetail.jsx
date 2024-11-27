@@ -1,26 +1,19 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import data from "../../data/userData";
 
 const UserDetail = () => {
-  const data = useLoaderData();
-  const { id, name, username, email } = data;
+  const { id } = useParams();
+  // we use parseInt(id) it is because id in the user componnet we are already convert it to string but d.id here is the number that why we need to convert it
+  const user = data.find((d) => d.id === parseInt(id));
   return (
     <div className="user-detail">
       <h3>User ID: {id}</h3>
-      <h3>Name: {name}</h3>
-      <h3>Username: {username}</h3>
-      <h3>Email: {email}</h3>
+      <h3>Name: {user.name}</h3>
+      <h3>Username: {user.username}</h3>
+      <h3>Email: {user.email}</h3>
       <Link to="/user">Back</Link>
     </div>
   );
-};
-
-export const userDetailLoader = async ({ params }) => {
-  const { id } = params;
-  const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
-  if(!res.ok){
-    throw new Error("Can't find this user")
-  }
-  return res.json();
 };
 
 export default UserDetail;
